@@ -4,36 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="./../../static/css/styles.css"
-    />
+    <link type="text/css" rel="stylesheet" href="./../../static/css/styles.css"/>
     <title>Reference</title>
   </head>
   <body class="font-body grid grid-rows-3 grid-cols-12">
     <%- include('../messages/errors.ejs') %>
-    <div class="text-center col-span-full row-start-1">
-      <nav class="grid grid-cols-8 items-center justify-items-center py-7 px-7">
-        <div class="col-start-1">
-          <a class="reference text-4xl font-semibold" href="#">Reference</a>
-        </div>
-        <div class="space-x-2 col-start-7 col-end-10 grid grid-cols-2">
-          <a
-            href="/login"
-            class="logsign m-3 col-start-1 p-2 border rounded border-log-0 hover:bg-logsign-0 hover"
-          >
-            <h4 class="text-xl">Login</h4>
-          </a>
-          <a
-            href="/register"
-            class="logsign m-3 col-start-2 bg-gray-500 p-2 rounded"
-          >
-            <h4 class="text-xl text-white">Sign Up</h4>
-          </a>
-        </div>
-      </nav>
-    </div>
+    <%- include('../nav/nav.ejs') %>
     <div class="grid grid-cols-2 row-start-2 row-end-4 col-span-full">
       <div class="col-start-1 px-7">
         <h2 class="text-5xl text-heading-0 font-semibold">

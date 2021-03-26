@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.card{
+    @apply rounded-lg;
+    @apply shadow-xl;
+    @apply bg-white;
+    background-color: #D9D9D9;
+}
+
 .reference{
     color: #353535;
 }
