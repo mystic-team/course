@@ -6,9 +6,10 @@ app.set("view engine", "ejs");
 
 app.set(express.static("static"));
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
+app.use("/", require("./routes/main/index"));
+app.use("/register", require("./routes/signup/register"));
+app.use("/dashboard/admin", require("./routes/login/admin/dashboard"));
+app.use("/dashboard/teacher", require("./routes/login/teacher/dashboard"));
+app.use("/dashboard/user", require("./routes/login/user/dashboard"));
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`On Port ${PORT}`));
