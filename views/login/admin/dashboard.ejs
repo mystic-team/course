@@ -10,44 +10,18 @@
   <body>
     <%- include('../../nav/nav.ejs') %>
     <h1>admin Dashboard</h1>
-    <div id="teacher">
-      <div>
-        <form
-          action="/adminDashbaord"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <input type="file" name="tFile" id="tFile" accept=".csv" />
-          <button type="submit">submit</button>
-        </form>
+    <%- include('../../messages/errors.ejs') %>
+    <form action="/adminDashbaord" method="POST">
+      <div id="teacher">
+        <input type="email" name="tAdd" id="tAdd" />
+        <input type="email" name="tDelete" id="tDelete" />
       </div>
-      <div>
-        <form action="/adminDashbaord" method="POST">
-          <input type="email" name="tUpdate" id="tUpdate" />
-          <input type="email" name="tDelete" id="tDelete" />
-          <button type="submit">submit</button>
-        </form>
+      <br />
+      <div id="user">
+        <input type="email" name="uAdd" id="uAdd" />
+        <input type="email" name="uDelete" id="uDelete" />
       </div>
-    </div>
-    <br />
-    <div id="user">
-      <div>
-        <form
-          action="/adminDashbaord"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <input type="file" name="uFile" id="uFile" accept=".csv" />
-          <button type="submit">submit</button>
-        </form>
-      </div>
-      <div>
-        <form action="/adminDashbaord" method="POST">
-          <input type="email" name="uUpdate" id="uUpdate" />
-          <input type="email" name="uDelete" id="uDelete" />
-          <button type="submit">submit</button>
-        </form>
-      </div>
-    </div>
+      <button type="submit">submit</button>
+    </form>
   </body>
 </html>
