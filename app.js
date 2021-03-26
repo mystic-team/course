@@ -3,8 +3,7 @@ const dotenv = require("dotenv").config();
 const app = express();
 
 app.set("view engine", "ejs");
-
-app.set(express.static("static"));
+app.use(express.static(__dirname));
 
 app.use("/", require("./routes/main/index"));
 app.use("/register", require("./routes/signup/register"));
