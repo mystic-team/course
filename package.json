@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "css": "---",
+    "css": "tailwindcss build src/styles.css -o ./static/css/styles.css",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
