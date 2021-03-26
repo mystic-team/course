@@ -3,7 +3,7 @@ const router = express.Router();
 
 const admin = require("./../../firebase-admin");
 const db = admin.firestore();
-const auth = admin.auth();
+
 db.settings({ timestampsInSnapshots: true });
 router.get("/", (req, res) => {
   res.render("login/login");
@@ -13,6 +13,7 @@ router.post("/", async (req, res) => {
   let adminFlag = false;
   let teacherFlag = false;
   let userFlag = false;
+  let errors = [];
   await db
     .collection("admin")
     .get()
@@ -54,7 +55,9 @@ router.post("/", async (req, res) => {
       }
     }
   }
-  if (!(userFlag || teacherFlag || adminFlag)) res.send("incorrect data");
-  //   res.send("Got it");
+  if (!(userFlag || teacherFlag || adminFlag)) {
+    errors.push({ msg: "Incorrect Detail" });
+    res.render("login/login", { errors });
+  }
 });
 module.exports = router;
