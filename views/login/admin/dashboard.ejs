@@ -8,5 +8,44 @@
   </head>
   <body>
     <h1>admin Dashboard</h1>
+    <div id="teacher">
+      <div>
+        <form
+          action="/adminDashbaord"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <input type="file" name="tFile" id="tFile" accept=".csv" />
+          <button type="submit">submit</button>
+        </form>
+      </div>
+      <div>
+        <form action="/adminDashbaord" method="POST">
+          <input type="email" name="tUpdate" id="tUpdate" />
+          <input type="email" name="tDelete" id="tDelete" />
+          <button type="submit">submit</button>
+        </form>
+      </div>
+    </div>
+    <br />
+    <div id="user">
+      <div>
+        <form
+          action="/adminDashbaord"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <input type="file" name="uFile" id="uFile" accept=".csv" />
+          <button type="submit">submit</button>
+        </form>
+      </div>
+      <div>
+        <form action="/adminDashbaord" method="POST">
+          <input type="email" name="uUpdate" id="uUpdate" />
+          <input type="email" name="uDelete" id="uDelete" />
+          <button type="submit">submit</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
