@@ -10,8 +10,8 @@
   <body class="font-body">
     <%- include('../messages/errors.ejs') %>
     <%- include('../nav/nav.ejs') %>
-   <div class="grid grid-cols-12 grid-rows-5">
-      <div class="card col-start-2 col-end-6 row-start-2 row-end-5 row-span-4">
+   <div class="grid grid-cols-12 grid-rows-3 items-center">
+      <div class="card col-start-2 col-end-6 row-start-1 row-end-4 row-span-4">
         <form action="/login" method="POST">
             <div class="grid grid-rows-3 items-center justify-items-center p-7 gap-y-5 text-lg">
               <div class="grid items-center justify-items-center row-span-1 w-full px-3">
@@ -34,10 +34,11 @@
         </form>
       </div>
       
-      <div class="col-start-8 col-end-12 row-start-2 row-end-5">
+      <div class="col-start-8 col-end-12 row-start-2 row-end-4 mb-4">
         <img src="./../../static/imgs/login.svg" alt="login">
       </div>
    </div>
+   <%- include('../footer/footer.ejs') %>
    <script src="./../../static/js/login.js"></script>
   </body>
 </html>

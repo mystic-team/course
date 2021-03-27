@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
         });
       });
     if (teacherFlag) {
-      res.render("login/teacher/dashboard" , {userStatus: 'login'});
+      res.render("login/teacher/dashboard" , {userStatus: 'teacher'});
     } else {
       await db
         .collection("user")
@@ -51,7 +51,7 @@ router.post("/", async (req, res) => {
           });
         });
       if (userFlag) {
-        res.render("login/user/dashboard", {userStatus: 'login'});
+        res.render("login/user/dashboard", {userStatus: 'user'});
       }
     }
   }
