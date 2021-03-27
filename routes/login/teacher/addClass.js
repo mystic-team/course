@@ -14,11 +14,12 @@ router.post("/", (req, res) => {
     storage: storage,
   }).single("class");
   uploadCsv(req, res, async (err) => {
-    const { email, className } = req.body;
+    const { email, className, sem } = req.body;
     const file = req.file;
     const fileName = file.filename;
     let errors = [];
     let emails = [];
+    let flag = false;
     const csv = fs.readFileSync(`./uploads/${fileName}`, "utf-8");
     papaparse.parse(csv, {
       complete: (sheet) => {
@@ -33,6 +34,7 @@ router.post("/", (req, res) => {
     await db
       .doc(`teacher/${email}/class/${className}`)
       .set({
+        sem: parseInt(sem),
         className: className,
         students: emails,
       })
@@ -44,6 +46,37 @@ router.post("/", (req, res) => {
         errors.push({ msg: "Something went wrong" });
         res.render("login/teacher/dashboard", { errors });
       });
+    emails.forEach(async (c) => {
+      let classLink = [];
+      let studentEmail = c;
+      await db
+        .collection("user")
+        .get()
+        .then((user) => {
+          user.docs.forEach((c) => {
+            if (c.id == studentEmail) {
+              if (c.data().classLink) {
+                classLink = c.data().classLink;
+                classLink.push(`teacher/${email}/class/${className}`);
+              } else {
+                classLink.push(`teacher/${email}/class/${className}`);
+              }
+              flag = true;
+            }
+          });
+        });
+      if (flag) {
+        console.log(classLink);
+        db.doc(`user/${studentEmail}`).set({
+          classLink: classLink,
+        });
+      } else {
+        classLink.push(`teacher/${email}/class/${className}`);
+        db.doc(`user/${studentEmail}`).set({
+          classLink: classLink,
+        });
+      }
+    });
   });
 });
 module.exports = router;

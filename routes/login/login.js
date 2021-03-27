@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
   let userDetails = {
     className: [],
     students: [],
+    sem: [],
   };
   let errors = [];
   await db
@@ -54,12 +55,15 @@ router.post("/", async (req, res) => {
         .then((user) => {
           let className = [];
           let students = [];
+          let sem = [];
           user.docs.forEach((c) => {
+            sem.push(c.data().sem);
             className.push(c.data().className);
             students.push(c.data().students);
           });
           userDetails.className = className;
           userDetails.students = students;
+          userDetails.sem = sem;
         });
       res.render("login/teacher/dashboard", {
         userStatus: "teacher",
