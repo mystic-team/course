@@ -22,10 +22,10 @@ router.post("/", async (req, res) => {
     if (!flag) {
       db.doc(`teacher/${tAdd}`).set({});
       errors.push({ msg: "Teacher added" });
-      res.render("login/admin/dashboard", { errors });
+      res.render("login/admin/dashboard", { errors, userStatus: "admin" });
     } else {
       errors.push({ msg: "Teacher already exist" });
-      res.render("login/admin/dashboard", { errors });
+      res.render("login/admin/dashboard", { errors, userStatus: "admin" });
     }
   } else if (uAdd) {
     await db
@@ -41,22 +41,22 @@ router.post("/", async (req, res) => {
     if (!flag) {
       db.doc(`user/${uAdd}`).set({});
       errors.push({ msg: "Student added" });
-      res.render("login/admin/dashboard", { errors });
+      res.render("login/admin/dashboard", { errors, userStatus: "admin" });
     } else {
       errors.push({ msg: "User already exist" });
-      res.render("login/admin/dashboard", { errors });
+      res.render("login/admin/dashboard", { errors, userStatus: "admin" });
     }
   } else if (tDelete) {
     db.collection("teacher").doc(tDelete).delete();
     errors.push({ msg: "Teacher removed successfully" });
-    res.render("login/admin/dashboard", { errors });
+    res.render("login/admin/dashboard", { errors, userStatus: "admin" });
   } else if (uDelete) {
     db.collection("user").doc(uDelete).delete();
     errors.push({ msg: "Student removed successfully" });
-    res.render("login/admin/dashboard", { errors });
+    res.render("login/admin/dashboard", { errors, userStatus: "admin" });
   } else {
     errors.push({ msg: "Please enter data" });
-    res.render("login/admin/dashboard", { errors });
+    res.render("login/admin/dashboard", { errors, userStatus: "admin" });
   }
 });
 module.exports = router;

@@ -18,12 +18,14 @@ router.post("/", async (req, res) => {
     students: [],
     sem: [],
   };
+  let teachers = [];
+  let students = [];
   let errors = [];
   await db
     .collection("admin")
     .get()
     .then((user) => {
-      user.docs.forEach((c) => {
+      user.docs.forEach(async (c) => {
         if (c.data().password == password && c.data().email == email) {
           userDetails = c.data();
           adminFlag = true;
@@ -31,9 +33,27 @@ router.post("/", async (req, res) => {
       });
     });
   if (adminFlag) {
+    await db
+      .collection("teacher")
+      .get()
+      .then((user) => {
+        user.docs.forEach((c) => {
+          teachers.push(c.id);
+        });
+      });
+    await db
+      .collection("user")
+      .get()
+      .then((user) => {
+        user.docs.forEach((c) => {
+          students.push(c.id);
+        });
+      });
     res.render("login/admin/dashboard", {
       userStatus: "admin",
       userDetails: JSON.stringify(userDetails),
+      teachers: JSON.stringify(teachers),
+      students: JSON.stringify(students),
     });
   } else {
     await db

@@ -4,47 +4,94 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link type="text/css" rel="stylesheet" href="./../../static/css/styles.css"/>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="./../../static/css/styles.css"
+    />
     <title>Reference</title>
   </head>
-  <body>
-    <%- include('../../nav/nav.ejs') %>
-    <%- include('../../messages/errors.ejs') %>
-    <div class="h-full fixed z-1 top-0 left-0 bg-gray-800 text-white overflow-x-hidden justify-items-center" style="width: 300px;">
+  <body onload="getData()">
+    <%- include('../../nav/nav.ejs') %> <%- include('../../messages/errors.ejs')
+    %>
+    <div
+      class="h-full fixed z-1 top-0 left-0 bg-gray-800 text-white overflow-x-hidden justify-items-center"
+      style="width: 300px"
+    >
       <div class="text-center text-4xl font-semibold mt-10">
         <a class="" href="/">Reference</a>
       </div>
       <div class="mt-6 text-center space-y-2">
-        <h3 class="teacher logsign cursor-pointer text-2xl p-2 underline">Teacher Details</h3>
-        <h3 class="student logsign cursor-pointer text-2xl p-2">Student Details</h3>
+        <h3 class="teacher logsign cursor-pointer text-2xl p-2 underline">
+          Teacher Details
+        </h3>
+        <h3 class="student logsign cursor-pointer text-2xl p-2">
+          Student Details
+        </h3>
       </div>
     </div>
     <div class="grid grid-cols-12">
       <div class="grid card col-start-6 col-end-10 p-5">
         <form action="/adminDashbaord" method="POST">
-          <div class="grid grid-rows-3 items-center justify-items-center gap-y-3">
+          <input
+            type="text"
+            name="teachers"
+            id="teachers"
+            value="<%= typeof teachers != 'undefined' ? teachers : '' %> "
+            style="display: none"
+          />
+          <input
+            type="text"
+            name="students"
+            id="students"
+            value="<%= typeof students != 'undefined' ? students : '' %> "
+            style="display: none"
+          />
+          <div
+            class="grid grid-rows-3 items-center justify-items-center gap-y-3"
+          >
             <div class="text-center">
               <h1 class="text-3xl font-medium">Teacher's Updation Form</h1>
             </div>
             <div id="teacher" class="grid grid-cols-2 space-x-5">
               <div class="col-start-1">
                 <label for="tAdd">Email Address to add:</label>
-                <input class="bg-gray-400 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline" type="email" name="tAdd" id="tAdd" placeholder="JohnDoe@gmail.com"/>
+                <input
+                  class="bg-gray-400 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                  type="email"
+                  name="tAdd"
+                  id="tAdd"
+                  placeholder="JohnDoe@gmail.com"
+                />
               </div>
               <div class="col-start-2">
                 <label for="tDelete">Email Address to delete:</label>
-                <input class="bg-gray-400 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline" type="email" name="tDelete" id="tDelete" placeholder="JohnDoe@gmail.com"/>
+                <input
+                  class="bg-gray-400 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                  type="email"
+                  name="tDelete"
+                  id="tDelete"
+                  placeholder="JohnDoe@gmail.com"
+                />
               </div>
             </div>
             <div>
-              <input type="submit" value="Perform Changes" class="logsign bg-gray-500 p-2 rounded text-xl text-white cursor-pointer"/>
+              <input
+                type="submit"
+                value="Perform Changes"
+                class="logsign bg-gray-500 p-2 rounded text-xl text-white cursor-pointer"
+              />
             </div>
-            <h4 class="text-lg font-semibold text-center"> Note: Perform one operation at a time. If both are tried to perform, first operation is only performed. </h4>
+            <h4 class="text-lg font-semibold text-center">
+              Note: Perform one operation at a time. If both are tried to
+              perform, first operation is only performed.
+            </h4>
           </div>
         </form>
       </div>
     </div>
     <!-- <%- include('../../footer/footer.ejs') %> -->
     <script src="../../../clientJS/delAdd.js"></script>
+    <script src="../../../clientJS/adminDashboard.js"></script>
   </body>
 </html>
