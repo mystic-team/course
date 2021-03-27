@@ -9,6 +9,7 @@
   </head>
   <body onload="getData()">
     <h1>Teacher Dashboard</h1>
+    <%- include('../../messages/errors.ejs') %>
     <input
       type="text"
       id="userDetails"
@@ -16,5 +17,15 @@
       style="display: none"
       value="<%= typeof userDetails != 'undefined' ? userDetails : '' %> "
     />
+    <button onclick="addClass()">Add class</button>
+    <div id="form" style="display: none">
+      <form action="/addClass" method="POST" enctype="multipart/form-data">
+        <input type="file" name="class" id="class" accept=".csv" />
+        <input type="text" name="email" id="email" style="display: none" />
+        <input type="text" name="className" id="className" />
+        <button type="submit">Add</button>
+      </form>
+    </div>
+    <div id="allClasses"></div>
   </body>
 </html>

@@ -13,7 +13,10 @@ router.post("/", async (req, res) => {
   let adminFlag = false;
   let teacherFlag = false;
   let userFlag = false;
-  let userDetails = {};
+  let userDetails = {
+    className: [],
+    students: [],
+  };
   let errors = [];
   await db
     .collection("admin")
@@ -44,6 +47,20 @@ router.post("/", async (req, res) => {
         });
       });
     if (teacherFlag) {
+      await db
+        .doc(`teacher/${email}`)
+        .collection("class")
+        .get()
+        .then((user) => {
+          let className = [];
+          let students = [];
+          user.docs.forEach((c) => {
+            className.push(c.data().className);
+            students.push(c.data().students);
+          });
+          userDetails.className = className;
+          userDetails.students = students;
+        });
       res.render("login/teacher/dashboard", {
         userStatus: "teacher",
         userDetails: JSON.stringify(userDetails),
