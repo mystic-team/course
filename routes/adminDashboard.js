@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
       });
     if (!flag) {
       db.doc(`user/${uAdd}`).set({});
-      errors.push({ msg: "User added" });
+      errors.push({ msg: "Student added" });
       res.render("login/admin/dashboard", { errors });
     } else {
       errors.push({ msg: "User already exist" });
@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
     res.render("login/admin/dashboard", { errors });
   } else if (uDelete) {
     db.collection("user").doc(uDelete).delete();
-    errors.push({ msg: "user removed successfully" });
+    errors.push({ msg: "Student removed successfully" });
     res.render("login/admin/dashboard", { errors });
   } else {
     errors.push({ msg: "Please enter data" });
