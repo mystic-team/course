@@ -8,18 +8,6 @@
     <title>Reference</title>
   </head>
   <body>
-    <!-- <div id="SideNav" class="h-full fixed z-1 top-0 left-0 bg-gray-800 text-white overflow-x-hidden" style="transition: 0.5s; width: 300px; margin-left: -300px;">
-      <a id="closeSideNav" href="javascript:void(0)" class="text-6xl absolute top-0 right-0 pr-5">&times;</a>
-      <a href="/"><img src="{% static '/images/logo.svg' %}" alt="Equipstat"></a>
-      <a href="{% url 'store' %}" class="text-center p-2 block text-2xl border-b-2 border-t-2 border-black">Store</a>
-      <a href="{% url 'refurbished' %}" class="text-center p-2 block text-2xl border-b-2 border-black">Refurbished</a>
-      {% if user.is_authenticated %}
-      <a href="{% url 'enlist' %}" class="text-center p-2 block text-2xl border-b-2 border-black">Enlist</a>
-      {% endif %}
-      <a href="{% url 'contact' %}" class="text-center p-2 block text-2xl border-b-2 border-black">Contact</a>
-      <a href="{% url 'about' %}" class="text-center p-2 block text-2xl border-b-2 border-black">About&nbsp;us</a>
-    </div> -->
-    <!-- class="text-center p-2 block text-2xl border-b-2 border-t-2 border-black" -->
     <%- include('../../nav/nav.ejs') %>
     <%- include('../../messages/errors.ejs') %>
     <div class="h-full fixed z-1 top-0 left-0 bg-gray-800 text-white overflow-x-hidden justify-items-center" style="width: 300px;">
@@ -27,19 +15,32 @@
         <a class="" href="/">Reference</a>
       </div>
       <div class="mt-6 text-center space-y-2">
-        <h3 id="student" class="logsign cursor-pointer text-2xl p-2">Students</h3>
-        <h3 id="teacher" class="logsign cursor-pointer text-2xl p-2">Teachers</h3>
+        <h3 class="teacher logsign cursor-pointer text-2xl p-2 underline">Teacher Details</h3>
+        <h3 class="student logsign cursor-pointer text-2xl p-2">Student Details</h3>
       </div>
     </div>
-    <div class="grid grid-cols-12 items-center">
-      <div class="card col-start-5 col-end-9">
+    <div class="grid grid-cols-12">
+      <div class="grid card col-start-6 col-end-10 p-5">
         <form action="/adminDashbaord" method="POST">
-          <h1>Teacher</h1>
-          <div id="teacher">
-            <input type="email" name="tAdd" id="tAdd" />
-            <input type="email" name="tDelete" id="tDelete" />
+          <div class="grid grid-rows-3 items-center justify-items-center gap-y-3">
+            <div class="text-center">
+              <h1 class="text-3xl font-medium">Teacher's Updation Form</h1>
+            </div>
+            <div id="teacher" class="grid grid-cols-2 space-x-5">
+              <div class="col-start-1">
+                <label for="tAdd">Email Address to add:</label>
+                <input class="bg-gray-400 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline" type="email" name="tAdd" id="tAdd" placeholder="JohnDoe@gmail.com"/>
+              </div>
+              <div class="col-start-2">
+                <label for="tDelete">Email Address to delete:</label>
+                <input class="bg-gray-400 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline" type="email" name="tDelete" id="tDelete" placeholder="JohnDoe@gmail.com"/>
+              </div>
+            </div>
+            <div>
+              <input type="submit" value="Perform Changes" class="logsign bg-gray-500 p-2 rounded text-xl text-white cursor-pointer"/>
+            </div>
+            <h4 class="text-lg font-semibold text-center"> Note: Perform one operation at a time. If both are tried to perform, first operation is only performed. </h4>
           </div>
-          <input type="submit" value="Perform Changes" class="logsign bg-gray-500 p-2 rounded text-xl text-white cursor-pointer"></input> 
         </form>
       </div>
     </div>

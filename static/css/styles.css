@@ -31334,6 +31334,66 @@ video {
   box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.24);
 }
 
+.alert {
+  z-index: 1;
+  position: absolute;
+  bottom: 70px;
+  left: 600px;
+  width: 350px;
+  background-color: #353535;
+  font-size: 20px;
+  padding: 2vh;
+  color: #ffffff;
+}
+
+.closebtn {
+  z-index: 1;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.alert.show {
+  z-index: 1;
+  -webkit-animation: showAlert 1s ease forwards;
+          animation: showAlert 1s ease forwards;
+}
+
+@-webkit-keyframes showAlert {
+  0% {
+    transform: translateX(100%);
+  }
+
+  40% {
+    transform: translateX(-15%);
+  }
+
+  80% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes showAlert {
+  0% {
+    transform: translateX(100%);
+  }
+
+  40% {
+    transform: translateX(-15%);
+  }
+
+  80% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;
