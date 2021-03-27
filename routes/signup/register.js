@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
           user.docs.forEach((c) => {
             if (c.id == email) {
               if (!c.data().password) {
-                db.doc(`user/${email}`).set({
+                db.doc(`user/${email}`).update({
                   name: name,
                   email: email,
                   password: password,

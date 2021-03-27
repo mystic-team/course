@@ -4,11 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link type="text/css" rel="stylesheet" href="./../../static/css/styles.css"/>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="./../../static/css/styles.css"
+    />
     <title>Document</title>
+    <script src="../../../clientJS/userDashboard.js"></script>
   </head>
-  <body>
+  <body onload="getData()">
     <%- include('../../nav/nav.ejs') %>
     <h1>Users dashboard</h1>
+    <div id="data">
+      <input
+        type="text"
+        name="userDetails"
+        id="userDetails"
+        style="display: none"
+        value="<%= typeof userDetails != 'undefined' ? userDetails : '' %>"
+      />
+    </div>
+    <div id="allClass"></div>
   </body>
 </html>
