@@ -13,6 +13,7 @@ router.post("/", async (req, res) => {
   let adminFlag = false;
   let teacherFlag = false;
   let userFlag = false;
+  let userDetails = {};
   let errors = [];
   await db
     .collection("admin")
@@ -20,12 +21,16 @@ router.post("/", async (req, res) => {
     .then((user) => {
       user.docs.forEach((c) => {
         if (c.data().password == password && c.data().email == email) {
+          userDetails = c.data();
           adminFlag = true;
         }
       });
     });
   if (adminFlag) {
-    res.render("login/admin/dashboard", {userStatus: 'admin'});
+    res.render("login/admin/dashboard", {
+      userStatus: "admin",
+      userDetails: JSON.stringify(userDetails),
+    });
   } else {
     await db
       .collection("teacher")
@@ -33,12 +38,16 @@ router.post("/", async (req, res) => {
       .then((user) => {
         user.docs.forEach((c) => {
           if (c.data().password == password && c.data().email == email) {
+            userDetails = c.data();
             teacherFlag = true;
           }
         });
       });
     if (teacherFlag) {
-      res.render("login/teacher/dashboard" , {userStatus: 'teacher'});
+      res.render("login/teacher/dashboard", {
+        userStatus: "teacher",
+        userDetails: JSON.stringify(userDetails),
+      });
     } else {
       await db
         .collection("user")
@@ -46,12 +55,16 @@ router.post("/", async (req, res) => {
         .then((user) => {
           user.docs.forEach((c) => {
             if (c.data().password == password && c.data().email == email) {
+              userDetails = c.data();
               userFlag = true;
             }
           });
         });
       if (userFlag) {
-        res.render("login/user/dashboard", {userStatus: 'user'});
+        res.render("login/user/dashboard", {
+          userStatus: "user",
+          userDetails: JSON.stringify(userDetails),
+        });
       }
     }
   }

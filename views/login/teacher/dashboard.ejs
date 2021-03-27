@@ -5,8 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="./../../../clientJS/dashboard.js"></script>
   </head>
-  <body>
+  <body onload="getData()">
     <h1>Teacher Dashboard</h1>
+    <input
+      type="text"
+      id="userDetails"
+      name="userDetails"
+      style="display: none"
+      value="<%= typeof userDetails != 'undefined' ? userDetails : '' %> "
+    />
   </body>
 </html>
