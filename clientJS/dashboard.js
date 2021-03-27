@@ -31,7 +31,7 @@ const getData = () => {
     if(semCount !== c.sem)
     {
       h2 += `
-      <h2 class="row-start-${rowsCount/*1*/} col-start-1 col-span-full" > Semester - ${c.sem} </h2>
+      <h2 class="text-3xl row-start-${rowsCount/*1*/} col-start-1 col-span-full" > <img class="w-7 inline" src="./static/imgs/pencil.svg"> Semester - ${c.sem} </h2>
       `;
       semCount = c.sem; //2-3-4
       colCount = 1; //1-1-1
@@ -39,8 +39,8 @@ const getData = () => {
       console.log(rowsCount)
     }
     html = `
-      <div class="card h-28 row-start-${rowsCount} col-start-${colCount} col-span-4" onclick='showClass("${c.className}")'>
-        <span>${c.className}</span>
+      <div class="logsign grid items-center justify-items-center card h-28 row-start-${rowsCount} col-start-${colCount} col-span-4 cursor-pointer" onclick='showClass("${c.className}")'>
+        <span class="text-3xl">${c.className}</span>
       </div>
     `;
     h2+=html;
