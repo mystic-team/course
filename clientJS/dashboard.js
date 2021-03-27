@@ -26,8 +26,8 @@ const getData = () => {
   let rowsCount = 1;
   let colCount = 1;
   let semCount = 0; //2-
-  let temp = semCount;
-  userDetails.sorted.forEach((c) => {
+  let details = userDetails.sorted;
+  details.forEach((c,index,details) => {
     if(semCount !== c.sem)
     {
       h2 += `
@@ -49,13 +49,12 @@ const getData = () => {
       colCount = 1;
       rowsCount++;
     }
-    if(temp !== semCount)
+    if(details[index+1] && details[index+1].sem != semCount)
     {
       rowsCount++;
-      temp = semCount;
     }
   });
-  // document.getElementsByClassName("h2").innerHTML = c.sem;
+  // document.getElementsByClassName("h2").innerHTML = c.sem; userDetails.sorted[index+1]
   document.getElementById("allClasses").innerHTML = h2
 };
 
