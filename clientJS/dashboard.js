@@ -4,10 +4,13 @@ const showClass = (className) => {
     userDetails = JSON.parse(localStorage.getItem("userDetails"));
     document.getElementById("email").value = userDetails.email;
   }
-  let index = userDetails.className.indexOf(className);
-  let students = userDetails.students[index];
+  userDetails.sorted.forEach((c) => {
+    if (c.className == className) {
+      students = c.students;
+      localStorage.setItem("currentStudents", JSON.stringify(students));
+    }
+  });
   localStorage.setItem("currentClassName", className);
-  localStorage.setItem("currentStudents", JSON.stringify(students));
   window.location.href = "/class";
 };
 const getData = () => {
@@ -15,10 +18,9 @@ const getData = () => {
   //   if (localStorage.getItem("userDetails").length < 10)
   localStorage.setItem("userDetails", userDetails);
   userDetails = JSON.parse(userDetails);
-  let className = userDetails.className;
   let btn = "";
-  className.forEach((c) => {
-    btn += `<button onclick='showClass("${c}")'>${c}</button> <br>`;
+  userDetails.sorted.forEach((c) => {
+    btn += `<button onclick='showClass("${c.className}")'>${c.className}</button> <br>`;
   });
   document.getElementById("allClasses").innerHTML = btn;
 };

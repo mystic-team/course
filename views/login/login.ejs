@@ -10,8 +10,9 @@
       href="./../../static/css/styles.css"
     />
     <title>Reference</title>
+    <script src="./../../clientJS/login.js"></script>
   </head>
-  <body class="font-body">
+  <body class="font-body" onload="resetData()">
     <%- include('../messages/errors.ejs') %> <%- include('../nav/nav.ejs') %>
     <div class="grid grid-cols-12 grid-rows-3 items-center">
       <div class="card col-start-2 col-end-6 row-start-1 row-end-4 row-span-4">

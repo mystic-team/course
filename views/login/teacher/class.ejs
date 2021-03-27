@@ -9,5 +9,17 @@
   </head>
   <body onload="getData()">
     <div id="heading"></div>
+    <form action="/class" method="POST" enctype="multipart/form-data">
+      <input type="file" name="post" id="post" />
+      <input type="text" name="postDetail" id="postDetail" />
+      <input type="text" name="email" id="email" style="display: none" />
+      <input
+        type="text"
+        name="className"
+        id="className"
+        style="display: none"
+      />
+      <button type="submit">Add</button>
+    </form>
   </body>
 </html>

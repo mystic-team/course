@@ -8,6 +8,19 @@ db.settings({ timestampsInSnapshots: true });
 router.get("/", (req, res) => {
   res.render("login/login");
 });
+const getSort = (sem, className, students) => {
+  let allUsers = [];
+  for (let i = 0; i < sem.length; i++) {
+    let current = {};
+    current.sem = sem[i];
+    current.className = className[i];
+    current.students = students[i];
+    allUsers.push(current);
+  }
+  allUsers = allUsers.sort((a, b) => a.sem - b.sem);
+  console.log(allUsers);
+  return allUsers;
+};
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
   let adminFlag = false;
@@ -17,6 +30,7 @@ router.post("/", async (req, res) => {
     className: [],
     students: [],
     sem: [],
+    sorted: [],
   };
   let teachers = [];
   let students = [];
@@ -81,9 +95,7 @@ router.post("/", async (req, res) => {
             className.push(c.data().className);
             students.push(c.data().students);
           });
-          userDetails.className = className;
-          userDetails.students = students;
-          userDetails.sem = sem;
+          userDetails.sorted = getSort(sem, className, students);
         });
       res.render("login/teacher/dashboard", {
         userStatus: "teacher",
