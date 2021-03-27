@@ -8,17 +8,18 @@ db.settings({ timestampsInSnapshots: true });
 router.get("/", (req, res) => {
   res.render("login/login");
 });
-const getSort = (sem, className, students) => {
+const getSort = (sem, className, students, links, postDetails) => {
   let allUsers = [];
   for (let i = 0; i < sem.length; i++) {
     let current = {};
     current.sem = sem[i];
     current.className = className[i];
     current.students = students[i];
+    current.links = links[i];
+    current.postDetails = postDetails[i];
     allUsers.push(current);
   }
   allUsers = allUsers.sort((a, b) => a.sem - b.sem);
-  console.log(allUsers);
   return allUsers;
 };
 router.post("/", async (req, res) => {
@@ -31,6 +32,8 @@ router.post("/", async (req, res) => {
     students: [],
     sem: [],
     sorted: [],
+    links: [],
+    postDetails: [],
   };
   let teachers = [];
   let students = [];
@@ -89,13 +92,23 @@ router.post("/", async (req, res) => {
         .then((user) => {
           let className = [];
           let students = [];
+          let links = [];
+          let postDetails = [];
           let sem = [];
           user.docs.forEach((c) => {
             sem.push(c.data().sem);
             className.push(c.data().className);
             students.push(c.data().students);
+            links.push(c.data().links);
+            postDetails.push(c.data().postDetails);
           });
-          userDetails.sorted = getSort(sem, className, students);
+          userDetails.sorted = getSort(
+            sem,
+            className,
+            students,
+            links,
+            postDetails
+          );
         });
       res.render("login/teacher/dashboard", {
         userStatus: "teacher",

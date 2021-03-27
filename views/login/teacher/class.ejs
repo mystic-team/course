@@ -9,6 +9,7 @@
   </head>
   <body onload="getData()">
     <div id="heading"></div>
+    <%- include('../../messages/errors.ejs') %>
     <form action="/class" method="POST" enctype="multipart/form-data">
       <input type="file" name="post" id="post" />
       <input type="text" name="postDetail" id="postDetail" />
@@ -21,5 +22,6 @@
       />
       <button type="submit">Add</button>
     </form>
+    <div id="allLinks"></div>
   </body>
 </html>
