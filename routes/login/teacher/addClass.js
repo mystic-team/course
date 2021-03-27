@@ -41,6 +41,7 @@ router.post("/", (req, res) => {
       .then(() => {
         errors.push({ msg: "Class created successfully" });
         res.render("login/teacher/dashboard", { errors });
+        fs.unlinkSync(`./uploads/${file.filename}`);
       })
       .catch(() => {
         errors.push({ msg: "Something went wrong" });

@@ -4,39 +4,70 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="../../../static/imgs/ref.png">
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="../../../static/imgs/ref.png"
+    />
     <title>Reference</title>
-    <link rel="stylesheet" href="./../../../static/css/styles.css">
+    <link rel="stylesheet" href="./../../../static/css/styles.css" />
     <script src="./../../../clientJS/dashboard.js"></script>
   </head>
   <body onload="getData()">
-    <%- include('../../messages/errors.ejs') %>
-    <%- include('../../nav/nav.ejs') %>
-    <input
-      type="text"
-      id="userDetails"
-      name="userDetails"
-      style="display: none"
-      value="<%= typeof userDetails != 'undefined' ? userDetails : '' %> "
-    />
+    <%- include('../../messages/errors.ejs') %> <%- include('../../nav/nav.ejs')
+    %>
+    <div id="data">
+      <input
+        type="text"
+        id="userDetails"
+        name="userDetails"
+        style="display: none"
+        value="<%= typeof userDetails != 'undefined' ? userDetails : '' %> "
+      />
+    </div>
 
-   <div class="grid grid-cols-12 justify-items-center items-center">
+    <div class="grid grid-cols-12 justify-items-center items-center">
       <div class="col-start-2">
-        <input value="Create Class" class="logsign bg-gray-500 p-2 rounded text-xl text-white cursor-pointer" onclick="addClass()" type="button">
+        <input
+          value="Create Class"
+          class="logsign bg-gray-500 p-2 rounded text-xl text-white cursor-pointer"
+          onclick="addClass()"
+          type="button"
+        />
       </div>
-      <div class="col-start-3 col-span-full" id="form" style="display: none;">
+      <div class="col-start-3 col-span-full" id="form" style="display: none">
         <form action="/addClass" method="POST" enctype="multipart/form-data">
           <div class="grid grid-cols-5 justify-items-center items-center">
             <div class="col-start-1 col-span-2">
               <label class="font-medium" for="class">CSV File:</label>
-              <input class="bg-gray-400 w-21 text-black rounded p-2 focus:outline-none focus:shadow-myOutline" type="file" name="class" id="class" accept=".csv"/>
+              <input
+                class="bg-gray-400 w-21 text-black rounded p-2 focus:outline-none focus:shadow-myOutline"
+                type="file"
+                name="class"
+                id="class"
+                accept=".csv"
+              />
             </div>
-            <input type="text" name="email" id="email" style="display: none"/>
+            <input type="text" name="email" id="email" style="display: none" />
             <div class="col-start-3 col-span-2">
               <label class="font-medium" for="className">Class Name:</label>
-              <input class="bg-gray-400 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline" type="text" name="className" id="className" placeholder="Subject name"/>
+              <input
+                class="bg-gray-400 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                type="text"
+                name="className"
+                id="className"
+                placeholder="Subject name"
+              />
               <label class="font-medium" for="sem">Sem:</label>
-              <input class="bg-gray-400 w-24 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline" min="1" max="8" type="number" name="sem" id="sem" placeholder="eg:4"/>
+              <input
+                class="bg-gray-400 w-24 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                min="1"
+                max="8"
+                type="number"
+                name="sem"
+                id="sem"
+                placeholder="eg:4"
+              />
             </div>
             <div class="col-start-5">
               <input class="logsign bg-gray-500 p-2 rounded text-xl text-white cursor-pointer" value="Create" type="submit">
@@ -45,9 +76,8 @@
         </form>
       </div>
     </div>
-    <div class="grid grid-cols-12 mt-10 gap-5 px-5" id="allClasses">
-
-    </div> <!--class cards-->
+    <div class="grid grid-cols-12 mt-10 gap-5 px-5" id="allClasses"></div>
+    <!--class cards-->
     <%- include('../../footer/footer.ejs') %>
   </body>
 </html>

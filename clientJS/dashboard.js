@@ -19,17 +19,18 @@ const getData = () => {
   //   if (localStorage.getItem("userDetails").length < 10)
   localStorage.setItem("userDetails", userDetails);
   userDetails = JSON.parse(userDetails);
+  document.getElementById("userDetails").value = "";
+  document.getElementById("data").innerHTML = "";
   let html = "";
-  let h2 =""; /*
+  let h2 = ""; /*
 
   */
   let rowsCount = 1;
   let colCount = 1;
   let semCount = 0;
   let details = userDetails.sorted;
-  details.forEach((c,index,details) => {
-    if(semCount !== c.sem)
-    {
+  details.forEach((c, index, details) => {
+    if (semCount !== c.sem) {
       h2 += `
       <h2 class="text-3xl row-start-${rowsCount} col-start-1 col-span-full" > <img class="w-7 inline" src="./static/imgs/pencil.svg"> Semester - ${c.sem} </h2>
       `;
@@ -42,14 +43,13 @@ const getData = () => {
         <span class="text-3xl">${c.className}</span>
       </div>
     `;
-    h2+=html;
-    colCount+=4;
-    if(colCount > 12 ){
+    h2 += html;
+    colCount += 4;
+    if (colCount > 12) {
       colCount = 1;
       rowsCount++;
     }
-    if(details[index+1] && details[index+1].sem != semCount)
-    {
+    if (details[index + 1] && details[index + 1].sem != semCount) {
       rowsCount++;
     }
   });

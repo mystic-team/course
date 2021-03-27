@@ -1,3 +1,4 @@
+const { render } = require("ejs");
 const express = require("express");
 const router = express.Router();
 
@@ -127,9 +128,30 @@ router.post("/", async (req, res) => {
           });
         });
       if (userFlag) {
-        res.render("login/user/dashboard", {
-          userStatus: "user",
-          userDetails: JSON.stringify(userDetails),
+        let allUsers = [];
+        let count = 0;
+        renderDashboard = () => {
+          res.render("login/user/dashboard", {
+            userStatus: "user",
+            userDetails: JSON.stringify(allUsers),
+          });
+        };
+        await userDetails.classLink.forEach(async (c, index, array) => {
+          let newUser = {};
+          await db
+            .doc(`${c}`)
+            .get()
+            .then(async (user) => {
+              newUser.sem = user.data().sem;
+              newUser.className = user.data().className;
+              newUser.links = user.data().links;
+              newUser.postDetails = user.data().postDetails;
+              allUsers.push(newUser);
+              count++;
+            });
+          if (count == array.length) {
+            renderDashboard();
+          }
         });
       }
     }
