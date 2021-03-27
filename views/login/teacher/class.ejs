@@ -5,24 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="../../../static/imgs/ref.png">
-    <title>Refernce</title>
+    <link rel="stylesheet" href="../../../static/css/styles.css">
+    <title>Reference</title>
     <script src="./../../../clientJS/class.js"></script>
   </head>
   <body onload="getData()">
-    <div id="heading"></div>
     <%- include('../../messages/errors.ejs') %>
-    <form action="/class" method="POST" enctype="multipart/form-data">
-      <input type="file" name="post" id="post" />
-      <input type="text" name="postDetail" id="postDetail" />
-      <input type="text" name="email" id="email" style="display: none" />
-      <input
-        type="text"
-        name="className"
-        id="className"
-        style="display: none"
-      />
-      <button type="submit">Add</button>
-    </form>
-    <div id="allLinks"></div>
+    <%- include('../../nav/nav.ejs') %>
+    <div class="" id="heading"></div>
+    <div class="h-full fixed z-1 top-0 left-0 bg-gray-800 text-white overflow-x-hidden justify-items-center"style="width: 300px">
+    <div class="sticky top-0 bg-gray-800 p-5"> 
+      <div class="text-center text-4xl font-semibold my-7">
+        <a class="" href="/">Reference</a>
+      </div>
+    </div>
+    <div class="listOfStudents mt-6 text-center space-y-2">
+
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12">
+    <div class="col-start-3 col-span-full">
+      <form action="/class" method="POST" enctype="multipart/form-data">
+        <div class="grid grid-cols-2 grid-rows-2 items-center justify-items-center">
+          <div class="grid items-center row-start-1 col-start-1">
+            <label class="mb-2 font-medium" for="post">Upload Video/Documents:</label>
+            <input class="bg-gray-400 w-21 text-black rounded p-2 focus:outline-none focus:shadow-myOutline" type="file" name="post" id="post" />
+          </div>
+          <div class="grid items-center row-start-1 col-start-2">
+            <label class="mb-2 font-medium" for="postDetail">Description:</label>
+            <textarea class="bg-gray-400 p-3 text-black rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline" rows="3" cols="50" type="text" name="postDetail" id="postDetail" placeholder="Description Of Lectures" required/></textarea>
+          </div>
+          <div class="grid items-center justify-items-center row-start-2 col-span-full">
+            <input class="logsign bg-gray-500 p-2 rounded text-xl text-white cursor-pointer" type="submit" value="Post Material">
+          </div>
+          <input type="text" name="email" id="email" style="display: none" />
+          <input type="text" name="className" id="className" style="display: none"/>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="allLinks" class="grid grid-cols-12 gap-5 p-10">
+    
+  </div>
   </body>
 </html>
