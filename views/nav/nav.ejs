@@ -23,7 +23,13 @@
             <a href="/" class="logsign m-3 col-start-2 p-2 border rounded border-log-0 hover:bg-logsign-0 hover">
                 <h4 class="text-xl">Logout</h4>
             </a>
-        </div>
-        <% } %>  
+          </div>
+        <% } else if(userStatus == 'teacher'){ %> 
+          <div class="space-x-2 col-start-7 col-end-10 grid grid-cols-2">
+            <a href="/" class="logsign m-3 col-start-2 p-2 border rounded border-log-0 hover:bg-logsign-0 hover">
+                <h4 class="text-xl">Logout</h4>
+            </a>
+          </div> 
+        <% } %>         
     </nav>
 </div>

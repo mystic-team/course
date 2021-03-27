@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./../../../static/css/styles.css">
     <script src="./../../../clientJS/dashboard.js"></script>
   </head>
   <body onload="getData()">
-    <h1>Teacher Dashboard</h1>
     <%- include('../../messages/errors.ejs') %>
+    <%- include('../../nav/nav.ejs') %>
     <input
       type="text"
       id="userDetails"
@@ -17,16 +18,35 @@
       style="display: none"
       value="<%= typeof userDetails != 'undefined' ? userDetails : '' %> "
     />
-    <button onclick="addClass()">Add class</button>
-    <div id="form" style="display: none">
-      <form action="/addClass" method="POST" enctype="multipart/form-data">
-        <input type="file" name="class" id="class" accept=".csv" />
-        <input type="text" name="email" id="email" style="display: none" />
-        <input type="text" name="className" id="className" />
-        <input type="number" name="sem" id="sem" />
-        <button type="submit">Add</button>
-      </form>
-    </div>
-    <div id="allClasses"></div>
+
+   <div class="grid grid-cols-12 justify-items-center items-center">
+      <div class="col-start-2">
+        <input value="Create Class" class="logsign bg-gray-500 p-2 rounded text-xl text-white cursor-pointer" onclick="addClass()" type="button">
+      </div>
+      <div class="col-start-3 col-span-full" id="form" style="display: none;">
+        <form action="/addClass" method="POST" enctype="multipart/form-data">
+          <div class="grid grid-cols-5 justify-items-center items-center">
+            <div class="col-start-1 col-span-2">
+              <label class="font-medium" for="class">CSV File:</label>
+              <input class="bg-gray-400 w-21 text-black rounded p-2 focus:outline-none focus:shadow-myOutline" type="file" name="class" id="class" accept=".csv"/>
+            </div>
+            <input type="text" name="email" id="email" style="display: none"/>
+            <div class="col-start-3 col-span-2">
+              <label class="font-medium" for="className">Class Name:</label>
+              <input class="bg-gray-400 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline" type="text" name="className" id="className" placeholder="Subject name"/>
+              <label class="font-medium" for="sem">Sem:</label>
+              <input class="bg-gray-400 w-24 text-black rounded p-2 placeholder-gray-700 focus:outline-none focus:shadow-myOutline" min="1" max="8" type="number" name="sem" id="sem" placeholder="eg:4"/>
+            </div>
+            <div class="col-start-5">
+              <input class="logsign bg-gray-500 p-2 rounded text-xl text-white cursor-pointer" value="Add" type="submit">
+            </div>
+          </div>
+        </form>
+      </div>
+   </div>
+
+    <div id="allClasses">
+
+    </div> <!--class cards-->
   </body>
 </html>
