@@ -6,7 +6,7 @@ const admin = require("firebase-admin");
 const db = admin.firestore();
 const fs = require("fs");
 router.get("/", (req, res) => {
-  res.render("login/teacher/class");
+  res.render("login/teacher/class", {userStatus: "teacher"});
 });
 router.post("/", (req, res) => {
   let file;
@@ -26,6 +26,7 @@ router.post("/", (req, res) => {
       bucket.upload(`./uploads/${file.filename}`).then(async () => {
         let links = [];
         let postDetails = [];
+        let format = [];
         console.log("Got it");
         await db
           .collection(`teacher`)
@@ -36,8 +37,11 @@ router.post("/", (req, res) => {
           .then((user) => {
             if (user.data().links) {
               links = user.data().links;
+              format = user.data().format;
               let fileName = file.filename;
               fileName = fileName.replace(/ /g, "%20");
+              let [a,cFormat] = fileName.split('.')
+              format.push(cFormat)
               links.push(
                 `https://firebasestorage.googleapis.com/v0/b/reference-101.appspot.com/o/${fileName}?alt=media`
               );
@@ -52,6 +56,8 @@ router.post("/", (req, res) => {
         if (links.length == 0) {
           let fileName = file.filename;
           fileName = fileName.replace(/ /g, "%20");
+          let [a, cFormat] = fileName.split('.');
+          format.push(cFormat)
           links.push(
             `https://firebasestorage.googleapis.com/v0/b/reference-101.appspot.com/o/${fileName}?alt=media`
           );
@@ -60,7 +66,9 @@ router.post("/", (req, res) => {
         db.doc(`teacher/${email}/class/${className}`).update({
           links: links,
           postDetails: postDetails,
+          format: format,
         });
+        console.log(format);
         errors.push({ msg: "Post uploaded successfully" });
         res.render("login/teacher/class", { errors });
         fs.unlinkSync(`./uploads/${file.filename}`);
