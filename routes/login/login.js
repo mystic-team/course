@@ -136,24 +136,28 @@ router.post("/", async (req, res) => {
             userDetails: JSON.stringify(allUsers),
           });
         };
-        await userDetails.classLink.forEach(async (c, index, array) => {
-          let newUser = {};
-          await db
-            .doc(`${c}`)
-            .get()
-            .then(async (user) => {
-              newUser.sem = user.data().sem;
-              newUser.className = user.data().className;
-              newUser.links = user.data().links;
-              newUser.postDetails = user.data().postDetails;
-              newUser.format = user.data().format;
-              allUsers.push(newUser);
-              count++;
-            });
-          if (count == array.length) {
-            renderDashboard();
-          }
-        });
+        if (userDetails.classLink) {
+          await userDetails.classLink.forEach(async (c, index, array) => {
+            let newUser = {};
+            await db
+              .doc(`${c}`)
+              .get()
+              .then(async (user) => {
+                newUser.sem = user.data().sem;
+                newUser.className = user.data().className;
+                newUser.links = user.data().links;
+                newUser.postDetails = user.data().postDetails;
+                newUser.format = user.data().format;
+                allUsers.push(newUser);
+                count++;
+              });
+            if (count == array.length) {
+              renderDashboard();
+            }
+          });
+        } else {
+          renderDashboard();
+        }
       }
     }
   }
