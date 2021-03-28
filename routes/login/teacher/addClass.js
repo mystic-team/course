@@ -33,19 +33,25 @@ router.post("/", (req, res) => {
     });
     await db
       .doc(`teacher/${email}/class/${className}`)
-      .set({
+      .update({
         sem: parseInt(sem),
         className: className,
         students: emails,
       })
       .then(() => {
         errors.push({ msg: "Class created successfully" });
-        res.render("login/teacher/dashboard", { errors });
+        res.render("login/teacher/dashboard", {
+          errors,
+          userStatus: "teacher",
+        });
         fs.unlinkSync(`./uploads/${file.filename}`);
       })
       .catch(() => {
         errors.push({ msg: "Something went wrong" });
-        res.render("login/teacher/dashboard", { errors });
+        res.render("login/teacher/dashboard", {
+          errors,
+          userStatus: "teacher",
+        });
       });
     emails.forEach(async (c) => {
       let classLink = [];
@@ -68,12 +74,12 @@ router.post("/", (req, res) => {
         });
       if (flag) {
         console.log(classLink);
-        db.doc(`user/${studentEmail}`).set({
+        db.doc(`user/${studentEmail}`).update({
           classLink: classLink,
         });
       } else {
         classLink.push(`teacher/${email}/class/${className}`);
-        db.doc(`user/${studentEmail}`).set({
+        db.doc(`user/${studentEmail}`).update({
           classLink: classLink,
         });
       }
