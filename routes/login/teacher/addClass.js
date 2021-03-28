@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
     });
     await db
       .doc(`teacher/${email}/class/${className}`)
-      .update({
+      .set({
         sem: parseInt(sem),
         className: className,
         students: emails,
