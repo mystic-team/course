@@ -4,31 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      type="image/png"
-      href="../../../static/imgs/ref.png"
-    />
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="./../../static/css/styles.css"
-    />
-    <title>Document</title>
-    <script src="../../../clientJS/userDashboard.js"></script>
+    <link rel="shortcut icon" type="image/png" href="../../../static/imgs/ref.png"/>
+    <link type="text/css" rel="stylesheet" href="./../../static/css/styles.css"/>
+    <title>Reference</title>
   </head>
   <body onload="getData()">
     <%- include('../../nav/nav.ejs') %>
-    <h1>Users dashboard</h1>
     <div id="data">
-      <input
-        type="text"
-        name="userDetails"
-        id="userDetails"
-        style="display: none"
-        value="<%= typeof userDetails != 'undefined' ? userDetails : '' %>"
-      />
+      <input type="text" name="userDetails" id="userDetails" style="display: none" value="<%= typeof userDetails != 'undefined' ? userDetails : '' %>" />
     </div>
-    <div id="allClass"></div>
+    <div class="grid grid-cols-12 mt-10 gap-5 px-5" id="allClass">
+      
+    </div>
+    <%- include('../../footer/footer.ejs') %>
+    <script src="../../../clientJS/userDashboard.js"></script>
   </body>
 </html>

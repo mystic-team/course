@@ -146,6 +146,7 @@ router.post("/", async (req, res) => {
               newUser.className = user.data().className;
               newUser.links = user.data().links;
               newUser.postDetails = user.data().postDetails;
+              newUser.format = user.data().format;
               allUsers.push(newUser);
               count++;
             });
